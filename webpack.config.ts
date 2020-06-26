@@ -8,16 +8,18 @@ const devMode = process.env.NODE_ENV !== "production";
 module.exports = {
   entry: "./src/main.ts",
   output: {
+    filename: "[hash:7].js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [
       {
         test: /\.tsx?/,
+        exclude: /(node_modules|bower_components)/,
         use: [
+          "babel-loader",
           {
             loader: "ts-loader",
-            exclude: /node_modules/,
             options: {
               configFile: path.resolve("./tsconfig.json"),
             },
@@ -30,9 +32,8 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[name][hash].[ext]",
-              outputPath: "images",
-              publicPath: "assets",
+              name: "[hash:7].[ext]",
+              outputPath: "assets",
             },
           },
         ],
@@ -48,14 +49,15 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      filename: "webpack.html",
+      filename: "index.html",
       minify: false,
     }),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "styles.css",
+      filename: "[hash].css",
     }),
   ],
   mode: "development",
+  resolve: {
+    extensions: [".js", ".ts"],
+  },
 };

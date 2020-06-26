@@ -4,14 +4,19 @@
   "description": "",
   "scripts": {
     "webpack:dev": "webpack --config webpack.config.ts",
-    "clean:build-files": "rm -rf dist",
+    "tsc:build": "tsc",
+    "clean:dist-files": "rm -rf dist",
+    "clean:build-files": "rm -rf build",
     "recover": "npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "FS",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
     "@types/node": "^14.0.13",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
@@ -21,9 +26,9 @@
     "sass": "^1.26.9",
     "sass-loader": "^8.0.2",
     "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "ts-node": "^8.10.2"
+    "webpack-cli": "^3.3.12"
   }
 }
