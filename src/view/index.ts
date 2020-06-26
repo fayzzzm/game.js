@@ -1,1 +1,4 @@
-console.log('Hello from view');
+export const obj = {
+  generateNumber: () => Math.random(),
+  greet: () => "Hello world",
+};
