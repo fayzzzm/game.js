@@ -1,41 +1,38 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const devMode = process.env.NODE_ENV !== 'production'
+const srcPath = path.resolve('./src');
+const nodeModulesPath = path.resolve('./node_modules');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: './src/index.tsx',
     output: {
         filename: '[hash:7].js',
         path: path.resolve(__dirname, 'dist'),
     },
     mode: 'development',
     resolve: {
-        extensions: ['.js', '.ts'],
+        extensions: ['.js', '.ts', '.tsx', '.jsx'],
+        alias: {
+            client: path.resolve(srcPath, './'),
+        },
+        modules: [srcPath, nodeModulesPath],
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         port: 9000,
-        // color: false,
         open: true,
-        before: function () {
-            // Can ran jest test and eslint
-        },
-        after: function () {
-            // do fancy stuff
-            console.log('Hey, FS Team')
-        },
         headers: {
             'X-Author': 'FS Team',
         },
-        // For now we don't need it, but when
-        // we start to write our backend add proxy
-        // proxy: {},
+
         publicPath: 'assets/',
     },
+    target: 'web',
     module: {
         rules: [
             {
@@ -82,4 +79,4 @@ module.exports = {
             filename: '[hash].css',
         }),
     ],
-}
+};
