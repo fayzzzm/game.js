@@ -23,14 +23,9 @@ module.exports = {
         modules: [srcPath, nodeModulesPath],
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
         port: 9000,
         open: true,
-        headers: {
-            'X-Author': 'FS Team',
-        },
-
-        publicPath: 'assets/',
+        watchContentBase: true,
     },
     target: 'web',
     module: {
