@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import './style.scss';
+import { Button } from 'client/components/Button';
 import { Field } from 'client/components/Field';
 
 interface IApp {
@@ -28,7 +29,18 @@ export const AppView: React.FC<IApp> = (props) => {
             <h1>
                 {props.winner ? `Winner is ${props.turn ? 'Y' : 'X'}` : null}
             </h1>
-            <button onClick={props.options.resetGame}>Reset Game</button>
+            <Button
+                options={{
+                    handlerClick: props.options.resetGame,
+                    value: 'Reset Game',
+                }}
+            ></Button>
+            <Button
+                options={{
+                    handlerClick: props.options.stepBack,
+                    value: 'Step Back',
+                }}
+            ></Button>
             <div className="container">{...blocks}</div>;
         </div>
     );
