@@ -1,66 +1,78 @@
 import * as React from 'react';
 import { checkWinner } from 'client/libs';
+import { observer, inject } from 'mobx-react';
 import { AppView } from './AppView';
+import { gameDataModel } from 'client/models';
 
-export const App: React.FC<any> = (props) => {
-    const [field, setField] = React.useState<string[]>(Array(9).fill(''));
-    const [turn, setTurn] = React.useState(true);
-    const [winner, setWinner] = React.useState(false);
-    const [indexes, setIndexes] = React.useState<number[]>([]);
+export const App: React.FC<any> = inject('gameDataModel')(
+    observer((props) => {
+        const {
+            field,
+            winner,
+            turn,
+            indexes,
+            updateField,
+            updateIndexes,
+            updateTurn,
+            updateWinner,
+        } = gameDataModel;
 
-    const options = {
-        handleClick: (
-            e: React.ReactEventHandler<HTMLDivElement>,
-            idx: number
-        ) => {
-            const _field = [...field];
-            if (field[idx] || winner) {
-                console.warn("Can't do this");
-                return;
-            }
+        const options = {
+            handleClick: (
+                e: React.ReactEventHandler<HTMLDivElement>,
+                idx: number
+            ) => {
+                const _field = [...field];
+                if (field[idx] || winner) {
+                    console.warn("Can't do this");
+                    return;
+                }
 
-            turn ? (_field[idx] = 'x') : (_field[idx] = 'y');
+                turn ? (_field[idx] = 'x') : (_field[idx] = 'y');
 
-            setIndexes(indexes.concat(idx));
-            setField(_field);
-            setTurn(!turn);
+                updateIndexes(indexes.concat(idx));
+                updateField(_field);
+                updateTurn();
 
-            const isWinner = checkWinner(_field);
-            if (isWinner) {
-                const leaders = JSON.parse(localStorage.getItem('leaders')!);
-                leaders.push(turn ? 'X' : 'Y');
-                localStorage.setItem('leaders', JSON.stringify(leaders));
+                const isWinner = checkWinner(_field);
+                if (isWinner) {
+                    const leaders = JSON.parse(
+                        localStorage.getItem('leaders')!
+                    );
+                    leaders.push(turn ? 'X' : 'Y');
+                    localStorage.setItem('leaders', JSON.stringify(leaders));
 
-                setWinner(true);
-            }
-        },
-        resetGame: () => {
-            setField([]);
-            setTurn(true);
-            setWinner(false);
-        },
-        stepBack: () => {
-            if (indexes.length === 0) {
-                return;
-            }
+                    updateWinner(true);
+                }
+            },
+            resetGame: () => {
+                updateField([]);
+                updateTurn();
+                updateWinner(false);
+            },
+            stepBack: () => {
+                if (indexes.length === 0) {
+                    return;
+                }
 
-            const _field = [...field];
-            const _indexes = [...indexes];
-            const { length } = _indexes;
-            const [index] = _indexes.splice(length - 1, 1);
+                const _field = [...field];
+                const _indexes = [...indexes];
+                const { length } = _indexes;
+                const [index] = _indexes.splice(length - 1, 1);
 
-            _field[index] = '';
+                _field[index] = '';
 
-            setField(_field);
-            setIndexes(_indexes);
-            setTurn(!turn);
-        },
-    };
+                updateField(_field);
+                updateIndexes(_indexes);
+                updateTurn();
+            },
+        };
 
-    return AppView({
-        options,
-        winner,
-        turn,
-        field,
-    });
-};
+        return AppView({
+            options,
+            winner,
+            turn,
+            field,
+        });
+    })
+);

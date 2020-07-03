@@ -19,6 +19,7 @@ module.exports = {
         extensions: ['.js', '.ts', '.tsx', '.jsx'],
         alias: {
             client: path.resolve(srcPath, './'),
+            models: path.resolve(srcPath, './models'),
         },
         modules: [srcPath, nodeModulesPath],
     },

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as models from 'client/models';
+
 import { App } from 'client/scenes/App/App';
 import { List } from 'client/scenes/List/List';
 import { Header } from 'client/components/Header';
