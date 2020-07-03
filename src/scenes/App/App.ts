@@ -2,18 +2,17 @@ import * as React from 'react';
 import { checkWinner } from 'client/libs';
 import { AppView } from './AppView';
 
-interface IApp {
-    children?: React.ReactNode;
-}
-
-export const App: React.FC<IApp> = (_) => {
+export const App: React.FC<any> = (props) => {
     const [field, setField] = React.useState<string[]>(Array(9).fill(''));
     const [turn, setTurn] = React.useState(true);
     const [winner, setWinner] = React.useState(false);
     const [indexes, setIndexes] = React.useState<number[]>([]);
 
     const options = {
-        handleClick: (e: Event, idx: number) => {
+        handleClick: (
+            e: React.ReactEventHandler<HTMLDivElement>,
+            idx: number
+        ) => {
             const _field = [...field];
             if (field[idx] || winner) {
                 console.warn("Can't do this");
@@ -27,7 +26,13 @@ export const App: React.FC<IApp> = (_) => {
             setTurn(!turn);
 
             const isWinner = checkWinner(_field);
-            if (isWinner) setWinner(true);
+            if (isWinner) {
+                const leaders = JSON.parse(localStorage.getItem('leaders')!);
+                leaders.push(turn ? 'X' : 'Y');
+                localStorage.setItem('leaders', JSON.stringify(leaders));
+
+                setWinner(true);
+            }
         },
         resetGame: () => {
             setField([]);

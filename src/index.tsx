@@ -1,5 +1,5 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { App } from 'client/scenes/App/App';
+import { RouteApp } from 'client/router';
 
-render(<App></App>, document.getElementById('root'));
+render(<RouteApp></RouteApp>, document.getElementById('root'));
