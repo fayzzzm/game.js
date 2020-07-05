@@ -1,0 +1,12 @@
+header {
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-column-gap: 20px;
+
+    & > .link {
+        display: grid;
+        place-content: center;
+        border: 1px solid #000;
+    }
+}

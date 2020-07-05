@@ -1,8 +1,10 @@
 import * as React from 'react';
+import * as models from 'client/models';
 import { render } from 'react-dom';
 import { RouteApp } from 'client/router';
-import * as models from 'client/models';
 import { Provider } from 'mobx-react';
+
+import 'client/styles.scss';
 
 render(
     <Provider {...models}>

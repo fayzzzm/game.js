@@ -8,7 +8,11 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 export const RouteApp: React.FC = () => {
     useEffect(() => {
-        localStorage.setItem('leaders', '[]');
+        const leaders = localStorage.getItem('leaders');
+
+        if (!leaders) {
+            localStorage.setItem('leaders', '[]');
+        }
     }, []);
 
     return (

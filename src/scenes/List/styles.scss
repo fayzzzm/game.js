@@ -1,0 +1,10 @@
+.winner {
+    border: 1px solid red;
+    background-color: gray;
+    color: red;
+
+    &:nth-child(odd) {
+        background-color: gainsboro;
+        color: #000;
+    }
+}

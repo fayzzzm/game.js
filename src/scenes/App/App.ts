@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { AppView } from './AppView';
 import { gameDataModel } from 'client/models';
 
-export const App: React.FC<any> = inject('gameDataModel')(
+export const App: React.FC = inject('gameDataModel')(
     observer((props) => {
         const {
             field,
