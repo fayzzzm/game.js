@@ -6,7 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const srcPath = path.resolve('./src');
 const nodeModulesPath = path.resolve('./node_modules');
-const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: './src/index.tsx',
@@ -18,7 +17,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx'],
         alias: {
-            client: path.resolve(srcPath, './'),
+            client: srcPath,
             models: path.resolve(srcPath, './models'),
         },
         modules: [srcPath, nodeModulesPath],
