@@ -8,7 +8,7 @@ import { gameDataModel } from 'client/models';
 
 export const Header: React.FC = inject('gameDataModel')(
     observer(() => {
-        const { resetGame, stepBack } = gameDataModel;
+        const { resetGame, stepBack, changeTurn } = gameDataModel;
         return (
             <header>
                 <Link className="link" to="/">
@@ -28,6 +28,12 @@ export const Header: React.FC = inject('gameDataModel')(
                         options={{
                             handlerClick: stepBack,
                             value: 'Step Back',
+                        }}
+                    ></Button>
+                    <Button
+                        options={{
+                            handlerClick: changeTurn,
+                            value: 'Change Turn',
                         }}
                     ></Button>
                 </div>

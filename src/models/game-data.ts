@@ -2,15 +2,17 @@ import { observable, action } from 'mobx';
 import { checkWinner } from 'client/libs';
 
 export class GameDataModel {
+    private resetTurn = true;
+
     @observable public field: string[] = Array(9).fill('');
-    @observable public turn = true;
+    @observable public turn = this.resetTurn;
     @observable public winner = false;
     @observable public indexes: number[] = [];
 
     @action public resetGame = (): void => {
         this.updateWinner(false);
         this.updateField([]);
-        this.updateTurn();
+        this.updateTurn(this.resetTurn);
     };
 
     @action public stepBack = (): void => {
@@ -57,6 +59,11 @@ export class GameDataModel {
         }
     };
 
+    @action public changeTurn = (): void => {
+        this.resetTurn = !this.resetTurn;
+        this.resetGame();
+    };
+
     @action public updateField = (field: string[]): void => {
         this.field = field;
     };
@@ -65,8 +72,12 @@ export class GameDataModel {
         this.indexes = indexes;
     };
 
-    @action public updateTurn = (): void => {
-        this.turn = !this.turn;
+    @action public updateTurn = (extra?: boolean): void => {
+        if (extra) {
+            this.turn = extra;
+        } else {
+            this.turn = !this.turn;
+        }
     };
 
     @action public updateWinner = (winner: boolean): void => {
