@@ -9,7 +9,7 @@ interface IListView {
 export const ListView: React.FC<IListView> = (props) => {
     const { list } = props;
     return (
-        <div className="wrapper">
+        <div className="winners">
             {...list.map((node, idx) => (
                 <span className="winner" key={Math.random() ** idx * 10}>
                     <strong>

@@ -4,8 +4,6 @@ import { render } from 'react-dom';
 import { RouteApp } from 'client/router';
 import { Provider } from 'mobx-react';
 
-import 'client/styles.scss';
-
 render(
     <Provider {...models}>
         <RouteApp></RouteApp>
