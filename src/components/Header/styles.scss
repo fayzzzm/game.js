@@ -1,9 +1,10 @@
 header {
     display: grid;
     align-content: start;
-    grid-column-gap: 20px;
+    grid-gap: 20px;
+}
 
-    & > .link {
-        padding: 8px 14px;
-    }
+.link {
+    padding: 8px 14px;
+    text-align: center;
 }

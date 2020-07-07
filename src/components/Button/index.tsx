@@ -11,7 +11,7 @@ export const Button: React.FC<IButtonProps> = (props) => {
     const { options } = props;
     return (
         <div className="button" onClick={options.handlerClick}>
-            {options.value}
+            {props.children}
         </div>
     );
 };

@@ -11,7 +11,7 @@ export class GameDataModel {
 
     @action public resetGame = (): void => {
         this.updateWinner(false);
-        this.updateField([]);
+        this.updateField(Array(9).fill(''));
         this.updateTurn(this.resetTurn);
     };
 
@@ -48,15 +48,7 @@ export class GameDataModel {
         this.updateIndexes(this.indexes.concat(idx));
         this.updateField(_field);
         this.updateTurn();
-
-        const isWinner = checkWinner(_field);
-        if (isWinner) {
-            const leaders = JSON.parse(localStorage.getItem('leaders')!);
-            leaders.push(this.turn ? 'X' : 'Y');
-            localStorage.setItem('leaders', JSON.stringify(leaders));
-
-            this.updateWinner(true);
-        }
+        this.updateWinner(checkWinner(_field));
     };
 
     @action public changeTurn = (): void => {

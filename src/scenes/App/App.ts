@@ -1,15 +1,42 @@
 import * as React from 'react';
 import { AppView } from './AppView';
 import { observer, inject } from 'mobx-react';
-import { gameDataModel } from 'client/models';
+import { GameDataModel } from 'client/models/game-data';
+const { useEffect } = React;
 
-export const App: React.FC = inject('gameDataModel')(
+interface IApp {
+    gameDataModel?: GameDataModel;
+}
+
+export const App: React.FC<IApp> = inject('gameDataModel')(
     observer((props) => {
-        const { field, winner, turn, handleFieldClick } = gameDataModel;
+        const {
+            field,
+            winner,
+            turn,
+            handleFieldClick,
+            resetGame,
+            stepBack,
+            changeTurn,
+        } = props.gameDataModel as GameDataModel;
 
-        console.log(handleFieldClick);
+        useEffect(() => {
+            resetGame();
+        }, []);
+
+        useEffect(() => {
+            if (winner) {
+                const leaders = JSON.parse(localStorage.getItem('leaders')!);
+                leaders.push(!turn ? 'X' : 'Y');
+                localStorage.setItem('leaders', JSON.stringify(leaders));
+            }
+        }, [winner]);
+
         const options = {
             handleClick: handleFieldClick,
+            stepBack,
+            changeTurn,
+            resetGame,
         };
 
         return AppView({
