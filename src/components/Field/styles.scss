@@ -3,13 +3,49 @@
 .field {
     width: 200px;
     height: 200px;
-    border-left: 0;
-    border-top: 0;
-    font-size: 65px;
-    text-align: center;
+
     line-height: 200px;
-    text-transform: uppercase;
-    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 65px;
+
     background: #2c2c54;
     color: #fff;
+    text-transform: uppercase;
+
+    font-family: 'Press Start 2P', cursive;
+    position: relative;
+
+    &__x-turn {
+        background: #e74c3c;
+    }
+
+    &__y-turn {
+        background: #e67e22;
+    }
+
+    &:before {
+        width: 100%;
+        position: absolute;
+        display: none;
+
+        top: 0;
+        left: 0;
+
+        background: #e74c3c;
+    }
+
+    &.hover__x-turn:hover {
+        &:before {
+            display: block;
+            content: 'X';
+        }
+    }
+
+    &.hover__y-turn:hover {
+        &:before {
+            display: block;
+            content: 'Y';
+            background: #e67e22;
+        }
+    }
 }

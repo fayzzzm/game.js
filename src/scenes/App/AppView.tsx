@@ -3,6 +3,7 @@ import * as React from 'react';
 import './style.scss';
 import { Field } from 'client/components/Field';
 import { Button } from 'client/components/Button';
+import classNames from 'classnames';
 
 interface IApp {
     options: Record<string, any>;
@@ -14,6 +15,12 @@ interface IApp {
 
 export const AppView: React.FC<IApp> = (props) => {
     const { resetGame, stepBack, changeTurn } = props.options;
+    const { turn, winner } = props;
+
+    const winnerClass = classNames({
+        'winner__x-turn': winner && !turn,
+        'winner__y-turn': winner && turn,
+    });
     const blocks = Array(9)
         .fill(0)
         .map((_, i) => (
@@ -50,7 +57,7 @@ export const AppView: React.FC<IApp> = (props) => {
                     }}
                 />
             </div>
-            <h1>
+            <h1 className={winnerClass}>
                 {props.winner ? `Winner is ${props.turn ? 'Y' : 'X'}` : null}
             </h1>
             <div className="game-field">{...blocks}</div>;

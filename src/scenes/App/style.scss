@@ -27,3 +27,20 @@
         grid-gap: 10px;
     }
 }
+
+.winner {
+    &__x-turn,
+    &__y-turn {
+        font-family: 'Press Start 2P', cursive;
+        color: #fff;
+        padding: 8px 14px;
+    }
+
+    &__x-turn {
+        background: #e74c3c;
+    }
+
+    &__y-turn {
+        background: #e67e22;
+    }
+}
