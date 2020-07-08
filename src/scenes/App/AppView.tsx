@@ -31,24 +31,24 @@ export const AppView: React.FC<IApp> = (props) => {
                 <Button
                     options={{
                         handlerClick: resetGame,
+                        value: 'reset game',
+                        iconName: 'fas fa-undo',
                     }}
-                >
-                    <i className="fas fa-undo game-icon"></i>
-                </Button>
+                />
                 <Button
                     options={{
                         handlerClick: stepBack,
+                        value: 'step back',
+                        iconName: 'fas fa-arrow-left',
                     }}
-                >
-                    <i className="fas fa-arrow-left game-icon"></i>
-                </Button>
+                />
                 <Button
                     options={{
                         handlerClick: changeTurn,
+                        value: 'change turn',
+                        iconName: 'fas fa-arrows-alt-h',
                     }}
-                >
-                    <i className="fas fa-arrows-alt-h game-icon"></i>
-                </Button>
+                />
             </div>
             <h1>
                 {props.winner ? `Winner is ${props.turn ? 'Y' : 'X'}` : null}

@@ -10,7 +10,7 @@ const nodeModulesPath = path.resolve('./node_modules');
 module.exports = {
     entry: './src/index.tsx',
     output: {
-        filename: '[hash:7].js',
+        filename: '[hash].js',
         path: path.resolve(__dirname, 'dist'),
     },
     mode: 'development',

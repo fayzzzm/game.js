@@ -16,7 +16,21 @@ body {
     background: #40407a;
 }
 
-.game-icon {
-    font-size: 50px;
-    color: #fff;
+.game-buttons {
+    text-align: center;
+
+    &__icon {
+        font-size: 50px;
+        margin: 10px;
+        color: #fff;
+    }
+
+    &__title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 14px;
+        padding: 8px 14px;
+        margin: 10px;
+        text-transform: capitalize;
+        line-height: 1.4em;
+    }
 }
