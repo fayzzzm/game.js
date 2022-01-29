@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { AppView } from './AppView';
 import { observer, inject } from 'mobx-react';
-import { GameDataModel } from 'client/models/game-data';
+import { GameModel } from 'client/models/gameModel';
 const { useEffect } = React;
 
 interface IApp {
-    gameDataModel?: GameDataModel;
+    gameModel?: GameModel;
 }
 
-export const App: React.FC<IApp> = inject('gameDataModel')(
+export const App: React.FC<IApp> = inject('gameModel')(
     observer((props) => {
         const {
             field,
@@ -18,7 +18,7 @@ export const App: React.FC<IApp> = inject('gameDataModel')(
             resetGame,
             stepBack,
             changeTurn,
-        } = props.gameDataModel as GameDataModel;
+        } = props.gameModel as GameModel;
 
         useEffect(() => {
             resetGame();

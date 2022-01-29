@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "webpack:dev": "webpack --config webpack.config.ts",
-        "webpack:dev-watch": "webpack --config webpack.config.ts --watch",
+        "webpack:dev-watch": "webpack-dev-server --config webpack.config.ts --watch",
         "rebuild:dev": "npm run clean:dist-files & npm run webpack:dev-watch",
         "tsc:build": "tsc",
         "clean:dist-files": "rm -rf dist",

@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { checkWinner } from 'client/libs';
 
-export class GameDataModel {
+export class GameModel {
     private resetTurn = true;
 
     @observable public field: string[] = Array(9).fill('');
@@ -36,8 +36,9 @@ export class GameDataModel {
         this.updateTurn();
     };
 
-    @action public handleFieldClick = (event: Event, idx: number): void => {
+    @action public handleFieldClick = <T>(event: T, idx: number): void => {
         const _field = [...this.field];
+
         if (this.field[idx] || this.winner) {
             console.warn("Can't do this");
             return;

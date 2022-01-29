@@ -1,3 +1,3 @@
-import { GameDataModel } from 'models/game-data';
+import { GameModel } from 'client/models/gameModel';
 
-export const gameDataModel = new GameDataModel();
+export const gameModel = new GameModel();
