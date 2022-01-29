@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { ListView } from 'client/scenes/List/ListView';
+import { useState, useEffect, FC } from 'react';
+import { ListView } from './List.view';
 
-export const List = () => {
+export const List: FC = () => {
     const [leaders, setLeaders] = useState([]);
+
     useEffect(() => {
         const leaders = JSON.parse(localStorage.getItem('leaders') || '[]');
         setLeaders(leaders);

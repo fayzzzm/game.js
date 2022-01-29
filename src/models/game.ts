@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { checkWinner } from 'client/libs';
+import { checkWinner } from '@game/utils';
 
 export class GameModel {
     private resetTurn = true;

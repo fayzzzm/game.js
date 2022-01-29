@@ -8,13 +8,14 @@
         "esModuleInterop": false,
         "experimentalDecorators": true,
         "noEmitOnError": true,
+        "allowSyntheticDefaultImports": true,
         "pretty": true,
         "jsx": "react",
 
         "baseUrl": "./",
         "paths": {
-            "client/*": ["./src/*"],
-            "models/*": ["./src/models/*"]
+            "@game/*": ["./src/*"],
+            "@models/*": ["./src/models/*"]
         }
     },
     "include": ["./src/**/*"],

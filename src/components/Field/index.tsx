@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { inject } from 'mobx-react';
-import { GameModel } from 'client/models/gameModel';
+
+import { GameModel } from '@models/game';
 
 import './styles.scss';
 
