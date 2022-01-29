@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { AppView } from './AppView';
+import React, { useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import { GameDataModel } from 'client/models/game-data';
-const { useEffect } = React;
+
+import { GameModel } from '@models/game';
+import { MainView } from './Main.view';
 
 interface IApp {
-    gameDataModel?: GameDataModel;
+    gameModel?: GameModel;
 }
 
-export const App: React.FC<IApp> = inject('gameDataModel')(
+export const Main: React.FC<IApp> = inject('gameModel')(
     observer((props) => {
         const {
             field,
@@ -18,7 +18,7 @@ export const App: React.FC<IApp> = inject('gameDataModel')(
             resetGame,
             stepBack,
             changeTurn,
-        } = props.gameDataModel as GameDataModel;
+        } = props.gameModel as GameModel;
 
         useEffect(() => {
             resetGame();
@@ -39,7 +39,7 @@ export const App: React.FC<IApp> = inject('gameDataModel')(
             resetGame,
         };
 
-        return AppView({
+        return MainView({
             options,
             winner,
             turn,

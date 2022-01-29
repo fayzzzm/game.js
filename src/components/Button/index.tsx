@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './styles.scss';
 
 interface IOptions {
-    handlerClick: (...params: any) => void;
+    handleClick: <T>(event: T) => void;
     value: string;
     iconName: string;
 }
@@ -15,12 +15,14 @@ interface IButtonProps {
 }
 
 export const Button: React.FC<IButtonProps> = (props) => {
-    const { options } = props;
-    const { value, handlerClick, iconName } = options;
+    const {
+        options: { value, handleClick, iconName },
+    } = props;
+
     const classnames = classNames(iconName, 'game-buttons__icon');
 
     return (
-        <div className="button" onClick={handlerClick}>
+        <div className="button" onClick={handleClick}>
             <i className={classnames}>
                 <div className="game-buttons__title">{value}</div>
             </i>

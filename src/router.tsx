@@ -1,12 +1,10 @@
-import * as React from 'react';
-
-import { App } from 'client/scenes/App/App';
-import { List } from 'client/scenes/List/List';
-import { Header } from 'client/components/Header';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
-import 'client/styles.scss';
+import { Main, List } from '@game/scenes';
+import { Header } from '@game/components';
+
+import '@game/styles.scss';
 
 export const RouteApp: React.FC = () => {
     useEffect(() => {
@@ -21,13 +19,13 @@ export const RouteApp: React.FC = () => {
         <Router>
             <div className="wrapper">
                 <div className="app">
-                    <Header></Header>
+                    <Header />
                     <Switch>
                         <Route path="/" exact>
-                            <App></App>
+                            <Main />
                         </Route>
                         <Route path="/leaders" exact>
-                            <List></List>
+                            <List />
                         </Route>
                     </Switch>
                 </div>

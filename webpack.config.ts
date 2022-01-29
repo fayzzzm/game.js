@@ -17,8 +17,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx'],
         alias: {
-            client: srcPath,
-            models: path.resolve(srcPath, './models'),
+            '@game': srcPath,
+            '@models': path.resolve(srcPath, './models'),
         },
         modules: [srcPath, nodeModulesPath],
     },

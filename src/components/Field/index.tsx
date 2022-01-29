@@ -1,22 +1,23 @@
 /* eslint-disable react/prop-types */
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { inject } from 'mobx-react';
-import { GameDataModel } from 'client/models/game-data';
+
+import { GameModel } from '@models/game';
+
 import './styles.scss';
 
 interface IFieldProps {
-    options: any;
     index: number;
     value: string;
     children?: JSX.Element;
-    gameDataModel?: GameDataModel;
+    gameDataModel?: GameModel;
+    handleClick: <T>(event: T, index: number) => void;
 }
 
 export const Field: React.FC<IFieldProps> = inject('gameDataModel')((props) => {
-    const { index, value } = props;
-    const { handleClick } = props.options;
-    const { turn, winner } = props.gameDataModel as GameDataModel;
+    const { index, value = '', handleClick, gameDataModel } = props;
+    const { turn, winner } = gameDataModel as GameModel;
 
     const classname = classNames(
         {
@@ -29,8 +30,11 @@ export const Field: React.FC<IFieldProps> = inject('gameDataModel')((props) => {
     );
 
     return (
-        <div className={classname} onClick={() => handleClick(event, index)}>
-            {value ? value : ''}
+        <div
+            className={classname}
+            onClick={(event) => handleClick(event, index)}
+        >
+            {value}
         </div>
     );
 });
